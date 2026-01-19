@@ -49,14 +49,16 @@ export default function Projects() {
                 ))}
               </div>
               <div className="flex gap-4">
-                <a
+                {project.githubUrl && (
+                  <a
                   href={project.githubUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
-                >
-                  GitHub →
-                </a>
+                  >
+                    GitHub →
+                  </a>
+                )}
                 {project.liveUrl && (
                   <a
                     href={project.liveUrl}
@@ -109,7 +111,8 @@ export default function Projects() {
                       </span>
                     ))}
                   </div>
-                  <a
+                  {project.githubUrl && (
+                    <a
                     href={project.githubUrl}
                     target="_blank"
                     rel="noopener noreferrer"
@@ -117,6 +120,7 @@ export default function Projects() {
                   >
                     View on GitHub →
                   </a>
+                  )}
                 </motion.div>
               ))}
             </div>
