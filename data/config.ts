@@ -24,6 +24,13 @@ export const projects = [
     githubUrl: null, //"://github.com/yourusername/project1",
     liveUrl: null, //"https://project1-demo.com",
     featured: true,
+    // Add your project screenshots here - replace with your actual image paths
+    // Images should be placed in the public folder (e.g., /images/project1-1.jpg)
+    images: [
+      "/images/project1-1.jpg", // Replace with your actual image path
+      "/images/project1-2.jpg", // Replace with your actual image path
+      "/images/project1-3.jpg", // Replace with your actual image path
+    ],
   },
   {
     id: 2,
@@ -33,6 +40,11 @@ export const projects = [
     githubUrl: null,
     liveUrl: null,
     featured: true,
+    // Add your project screenshots here
+    images: [
+      "/images/project2-1.jpg", // Replace with your actual image path
+      "/images/project2-2.jpg", // Replace with your actual image path
+    ],
   },
   {
     id: 3,
@@ -42,6 +54,9 @@ export const projects = [
     githubUrl: null,
     liveUrl: null,
     featured: false,
+    images: [
+      "/images/project3-1.jpg", // Replace with your actual image path
+    ],
   },
   {
     id: 4,
@@ -51,6 +66,9 @@ export const projects = [
     githubUrl: null,
     liveUrl: null,
     featured: false,
+    images: [
+      "/images/project4-1.jpg", // Replace with your actual image path
+    ],
   },
   {
     id: 5,
@@ -60,6 +78,9 @@ export const projects = [
     githubUrl: null,
     liveUrl: null,
     featured: false,
+    images: [
+      "/images/project5-1.jpg", // Replace with your actual image path
+    ],
   },
 ];
 

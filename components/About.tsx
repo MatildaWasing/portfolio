@@ -7,7 +7,7 @@ export default function About() {
   return (
     <section
       id="about"
-      className="py-20 px-4 sm:px-6 lg:px-8 bg-white dark:bg-gray-800"
+      className="py-24 px-4 sm:px-6 lg:px-8 bg-white"
     >
       <div className="max-w-4xl mx-auto">
         <motion.h2
@@ -15,7 +15,7 @@ export default function About() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-4xl font-bold text-center mb-12 text-gray-900 dark:text-white"
+          className="text-5xl font-bold text-center mb-6 text-slate-900"
         >
           About Me
         </motion.h2>
@@ -23,10 +23,10 @@ export default function About() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="prose prose-lg dark:prose-invert max-w-none"
+          transition={{ duration: 0.6, delay: 0.1 }}
+          className="prose prose-lg max-w-none"
         >
-          <p className="text-gray-700 dark:text-gray-300 text-lg leading-relaxed">
+          <p className="text-slate-600 text-lg sm:text-xl leading-relaxed text-center">
             {personalInfo.bio}
           </p>
         </motion.div>
@@ -34,25 +34,29 @@ export default function About() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.4 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
           className="mt-12 flex flex-wrap gap-4 justify-center"
         >
-          <div className="px-6 py-3 bg-gray-100 dark:bg-gray-700 rounded-lg">
-            <span className="text-gray-600 dark:text-gray-400">Location:</span>
-            <span className="ml-2 text-gray-900 dark:text-white font-semibold">
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            className="px-6 py-3 bg-slate-50 rounded-lg border border-slate-200"
+          >
+            <span className="text-slate-500">Location:</span>
+            <span className="ml-2 text-slate-900 font-medium">
               {personalInfo.location}
             </span>
-          </div>
+          </motion.div>
           {personalInfo.email && (
-            <a
+            <motion.a
               href={`mailto:${personalInfo.email}`}
-              className="px-6 py-3 bg-gray-100 dark:bg-gray-700 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
+              whileHover={{ scale: 1.05 }}
+              className="px-6 py-3 bg-slate-50 rounded-lg border border-slate-200 hover:bg-slate-100 transition-colors"
             >
-              <span className="text-gray-600 dark:text-gray-400">Email:</span>
-              <span className="ml-2 text-gray-900 dark:text-white font-semibold">
+              <span className="text-slate-500">Email:</span>
+              <span className="ml-2 text-slate-900 font-medium">
                 {personalInfo.email}
               </span>
-            </a>
+            </motion.a>
           )}
         </motion.div>
       </div>
