@@ -37,7 +37,7 @@ export default function Navigation() {
       animate={{ y: 0 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? "bg-white/90 backdrop-blur-md shadow-sm"
+          ? "bg-white/90 dark:bg-slate-900/90 backdrop-blur-md shadow-sm"
           : "bg-transparent"
       }`}
     >
@@ -50,7 +50,7 @@ export default function Navigation() {
               scrollToSection("#home");
             }}
             whileHover={{ scale: 1.05 }}
-            className="text-xl font-bold text-slate-900 hover:text-slate-700 transition-colors"
+            className="text-xl font-bold text-slate-900 dark:text-slate-100 hover:text-slate-700 dark:hover:text-slate-300 transition-colors"
           >
             Portfolio
           </motion.a>
@@ -65,15 +65,16 @@ export default function Navigation() {
                   scrollToSection(item.href);
                 }}
                 whileHover={{ scale: 1.05 }}
-                className="text-slate-700 hover:text-slate-900 transition-colors font-medium text-sm"
+                className="text-slate-700 dark:text-slate-300 hover:text-accent dark:hover:text-accent transition-colors font-medium text-sm relative group"
               >
                 {item.name}
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-accent group-hover:w-full transition-all duration-300" />
               </motion.a>
             ))}
           </div>
 
           <button
-            className="md:hidden text-slate-700"
+            className="md:hidden text-slate-700 dark:text-slate-300"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle menu"
           >
@@ -110,7 +111,7 @@ export default function Navigation() {
                   e.preventDefault();
                   scrollToSection(item.href);
                 }}
-                className="block text-slate-700 hover:text-slate-900 transition-colors font-medium"
+                className="block text-slate-700 dark:text-slate-300 hover:text-accent dark:hover:text-accent transition-colors font-medium"
               >
                 {item.name}
               </a>

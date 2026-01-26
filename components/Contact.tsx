@@ -7,7 +7,7 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-slate-50 to-white"
+      className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-slate-50 to-white dark:from-slate-800 dark:to-slate-900"
     >
       <div className="max-w-4xl mx-auto text-center">
         <motion.h2
@@ -15,7 +15,7 @@ export default function Contact() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-5xl font-bold mb-6 text-slate-900"
+          className="text-5xl font-bold mb-6 text-slate-900 dark:text-slate-100"
         >
           Get In Touch
         </motion.h2>
@@ -24,7 +24,7 @@ export default function Contact() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="text-lg sm:text-xl text-slate-600 mb-12 leading-relaxed"
+          className="text-lg sm:text-xl text-slate-600 dark:text-slate-300 mb-12 leading-relaxed"
         >
           I'm always open to discussing new opportunities, interesting projects,
           or just having a chat about technology.
@@ -41,7 +41,7 @@ export default function Contact() {
               href={`mailto:${personalInfo.email}`}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="px-8 py-3.5 bg-slate-900 text-white rounded-lg font-medium hover:bg-slate-800 transition-all duration-300 shadow-sm hover:shadow-md flex items-center gap-2"
+              className="px-8 py-3.5 bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-900 rounded-lg font-medium hover:bg-slate-800 dark:hover:bg-slate-200 transition-all duration-300 shadow-sm hover:shadow-md flex items-center gap-2"
             >
               <svg
                 className="w-5 h-5"
@@ -63,7 +63,7 @@ export default function Contact() {
             rel="noopener noreferrer"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="px-8 py-3.5 border-2 border-slate-900 text-slate-900 rounded-lg font-medium hover:bg-slate-900 hover:text-white transition-all duration-300 flex items-center gap-2"
+            className="px-8 py-3.5 border-2 border-accent text-accent rounded-lg font-medium hover:bg-accent hover:text-white transition-all duration-300 flex items-center gap-2"
           >
             <svg
               className="w-5 h-5"
@@ -84,7 +84,7 @@ export default function Contact() {
             rel="noopener noreferrer"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="px-8 py-3.5 border-2 border-slate-900 text-slate-900 rounded-lg font-medium hover:bg-slate-900 hover:text-white transition-all duration-300 flex items-center gap-2"
+            className="px-8 py-3.5 border-2 border-accent text-accent rounded-lg font-medium hover:bg-accent hover:text-white transition-all duration-300 flex items-center gap-2"
           >
             <svg
               className="w-5 h-5"

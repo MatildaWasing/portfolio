@@ -7,7 +7,7 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-slate-50 via-white to-slate-50"
+      className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-slate-50 via-white to-slate-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900"
     >
       <div className="max-w-5xl mx-auto text-center">
         <motion.div
@@ -19,10 +19,10 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.8, ease: "easeOut" }}
-            className="text-6xl sm:text-7xl lg:text-8xl font-bold text-slate-900 mb-6 tracking-tight"
+            className="text-6xl sm:text-7xl lg:text-8xl font-bold text-slate-900 dark:text-slate-100 mb-6 tracking-tight"
           >
             Hi, I'm{" "}
-            <span className="text-slate-700">
+            <span className="text-accent">
               {personalInfo.name}
             </span>
           </motion.h1>
@@ -30,7 +30,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.8, ease: "easeOut" }}
-            className="text-2xl sm:text-3xl lg:text-4xl text-slate-600 mb-8 font-light"
+            className="text-2xl sm:text-3xl lg:text-4xl text-slate-600 dark:text-slate-300 mb-8 font-light"
           >
             {personalInfo.title}
           </motion.p>
@@ -38,7 +38,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6, duration: 0.8, ease: "easeOut" }}
-            className="text-lg sm:text-xl text-slate-500 mb-12 max-w-2xl mx-auto leading-relaxed"
+            className="text-lg sm:text-xl text-slate-500 dark:text-slate-400 mb-12 max-w-2xl mx-auto leading-relaxed"
           >
             {personalInfo.bio}
           </motion.p>
@@ -52,7 +52,7 @@ export default function Hero() {
               href="#projects"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="px-8 py-3.5 bg-slate-900 text-white rounded-lg font-medium hover:bg-slate-800 transition-all duration-300 shadow-sm hover:shadow-md"
+              className="px-8 py-3.5 bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-900 rounded-lg font-bold text-lg hover:bg-slate-800 dark:hover:bg-slate-200 transition-all duration-300 shadow-sm hover:shadow-md"
             >
               View My Work
             </motion.a>
@@ -60,7 +60,7 @@ export default function Hero() {
               href="#contact"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="px-8 py-3.5 border-2 border-slate-900 text-slate-900 rounded-lg font-medium hover:bg-slate-900 hover:text-white transition-all duration-300"
+              className="px-8 py-3.5 border-2 border-accent text-accent rounded-lg font-bold text-lg hover:bg-accent hover:text-white transition-all duration-300"
             >
               Get In Touch
             </motion.a>

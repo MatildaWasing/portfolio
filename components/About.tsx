@@ -7,7 +7,7 @@ export default function About() {
   return (
     <section
       id="about"
-      className="py-24 px-4 sm:px-6 lg:px-8 bg-white"
+      className="py-24 px-4 sm:px-6 lg:px-8 bg-white dark:bg-slate-900"
     >
       <div className="max-w-4xl mx-auto">
         <motion.h2
@@ -15,7 +15,7 @@ export default function About() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-5xl font-bold text-center mb-6 text-slate-900"
+          className="text-5xl font-bold text-center mb-6 text-slate-900 dark:text-slate-100"
         >
           About Me
         </motion.h2>
@@ -26,7 +26,7 @@ export default function About() {
           transition={{ duration: 0.6, delay: 0.1 }}
           className="prose prose-lg max-w-none"
         >
-          <p className="text-slate-600 text-lg sm:text-xl leading-relaxed text-center">
+          <p className="text-slate-600 dark:text-slate-300 text-lg sm:text-xl leading-relaxed text-center">
             {personalInfo.bio}
           </p>
         </motion.div>
@@ -39,10 +39,10 @@ export default function About() {
         >
           <motion.div
             whileHover={{ scale: 1.05 }}
-            className="px-6 py-3 bg-slate-50 rounded-lg border border-slate-200"
+            className="px-6 py-3 bg-slate-50 dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700"
           >
-            <span className="text-slate-500">Location:</span>
-            <span className="ml-2 text-slate-900 font-medium">
+            <span className="text-slate-500 dark:text-slate-400">Location:</span>
+            <span className="ml-2 text-slate-900 dark:text-slate-100 font-medium">
               {personalInfo.location}
             </span>
           </motion.div>
@@ -50,10 +50,10 @@ export default function About() {
             <motion.a
               href={`mailto:${personalInfo.email}`}
               whileHover={{ scale: 1.05 }}
-              className="px-6 py-3 bg-slate-50 rounded-lg border border-slate-200 hover:bg-slate-100 transition-colors"
+              className="px-6 py-3 bg-slate-50 dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors"
             >
-              <span className="text-slate-500">Email:</span>
-              <span className="ml-2 text-slate-900 font-medium">
+              <span className="text-slate-500 dark:text-slate-400">Email:</span>
+              <span className="ml-2 text-slate-900 dark:text-slate-100 font-medium">
                 {personalInfo.email}
               </span>
             </motion.a>
