@@ -15,6 +15,8 @@ export default function Projects() {
   const [carouselIndex, setCarouselIndex] = useState(0);
 
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+
     const handlePopState = () => {
       const hash = window.location.hash;
       if (hash.startsWith('#project-')) {
@@ -42,14 +44,24 @@ export default function Projects() {
   }, []);
 
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+
     if (selectedProject) {
       const expectedHash = `#project-${selectedProject.id}`;
       if (window.location.hash !== expectedHash) {
-        window.history.pushState({ projectId: selectedProject.id }, '', expectedHash);
+        try {
+          window.history.pushState({ projectId: selectedProject.id }, '', expectedHash);
+        } catch (e) {
+          console.error('History pushState failed:', e);
+        }
       }
     } else {
       if (window.location.hash) {
-        window.history.pushState(null, '', window.location.pathname + window.location.search);
+        try {
+          window.history.pushState(null, '', window.location.pathname + window.location.search);
+        } catch (e) {
+          console.error('History pushState failed:', e);
+        }
       }
     }
   }, [selectedProject]);
@@ -61,6 +73,8 @@ export default function Projects() {
   }, [selectedProject]);
 
   useEffect(() => {
+    if (typeof document === 'undefined') return;
+
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         if (selectedImage) {
@@ -73,7 +87,7 @@ export default function Projects() {
 
     if (selectedImage || selectedProject) {
       document.addEventListener('keydown', handleEscape);
-      document.body.style.overflow = 'hidden'; // Prevent background scrolling
+      document.body.style.overflow = 'hidden';
     }
 
     return () => {
@@ -83,6 +97,8 @@ export default function Projects() {
   }, [selectedImage, selectedProject]);
 
   useEffect(() => {
+    if (typeof document === 'undefined') return;
+
     const handleArrowKeys = (e: KeyboardEvent) => {
       if (selectedProject && selectedProject.images && selectedProject.images.length > 0) {
         if (e.key === 'ArrowLeft') {
@@ -105,7 +121,7 @@ export default function Projects() {
   return (
     <section
       id="projects"
-      className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-white to-slate-50 dark:from-slate-900 dark:to-slate-800"
+      className="py-20 px-4 sm:px-6 lg:px-8 bg-white dark:bg-slate-900"
     >
       <div className="max-w-7xl mx-auto">
         <motion.h2
@@ -154,8 +170,9 @@ export default function Projects() {
                             fill
                             className="object-contain"
                             sizes="(max-width: 768px) 100vw, 60vw"
+                            priority={index === 0}
+                            quality={85}
                             onError={(e) => {
-                              // Fallback if image doesn't exist
                               const target = e.target as HTMLImageElement;
                               target.style.display = 'none';
                             }}
@@ -179,6 +196,7 @@ export default function Projects() {
                                   fill
                                   className="object-contain"
                                   sizes="(max-width: 768px) 50vw, 30vw"
+                                  quality={80}
                                   onError={(e) => {
                                     const target = e.target as HTMLImageElement;
                                     target.style.display = 'none';
@@ -289,6 +307,7 @@ export default function Projects() {
                         fill
                         className="object-contain group-hover:scale-105 transition-transform duration-300"
                         sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        quality={80}
                         onError={(e) => {
                           const target = e.target as HTMLImageElement;
                           target.style.display = 'none';
@@ -363,18 +382,21 @@ export default function Projects() {
               ✕
             </button>
             <div className="relative w-full rounded-lg overflow-hidden flex items-center justify-center">
-              <Image
-                src={selectedImage}
-                alt="Project screenshot"
-                width={1920}
-                height={1080}
-                className="max-w-full max-h-[95vh] w-auto h-auto object-contain"
-                unoptimized
-                onError={(e) => {
-                  const target = e.target as HTMLImageElement;
-                  target.style.display = 'none';
-                }}
-              />
+              {selectedImage && (
+                <Image
+                  src={selectedImage}
+                  alt="Project screenshot"
+                  width={1920}
+                  height={1080}
+                  className="max-w-full max-h-[95vh] w-auto h-auto object-contain"
+                  quality={90}
+                  priority
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.style.display = 'none';
+                  }}
+                />
+              )}
             </div>
           </motion.div>
         </motion.div>
@@ -395,8 +417,12 @@ export default function Projects() {
                   animate={{ opacity: 1, x: 0 }}
                   onClick={() => {
                     setSelectedProject(null);
-                    if (window.location.hash) {
-                      window.history.pushState(null, '', window.location.pathname + window.location.search);
+                    if (typeof window !== 'undefined' && window.location.hash) {
+                      try {
+                        window.history.pushState(null, '', window.location.pathname + window.location.search);
+                      } catch (e) {
+                        console.error('History pushState failed:', e);
+                      }
                     }
                   }}
                   className="flex items-center gap-2 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-slate-100 transition-colors font-medium"
@@ -408,8 +434,12 @@ export default function Projects() {
                   animate={{ opacity: 1, x: 0 }}
                   onClick={() => {
                     setSelectedProject(null);
-                    if (window.location.hash) {
-                      window.history.pushState(null, '', window.location.pathname + window.location.search);
+                    if (typeof window !== 'undefined' && window.location.hash) {
+                      try {
+                        window.history.pushState(null, '', window.location.pathname + window.location.search);
+                      } catch (e) {
+                        console.error('History pushState failed:', e);
+                      }
                     }
                   }}
                   className="text-slate-400 dark:text-slate-500 hover:text-slate-900 dark:hover:text-slate-100 transition-colors text-2xl w-10 h-10 flex items-center justify-center rounded-full hover:bg-slate-100 dark:hover:bg-slate-800"
@@ -542,6 +572,7 @@ export default function Projects() {
                                 fill
                                 className="object-cover"
                                 sizes="96px"
+                                quality={75}
                               />
                             </button>
                           ))}

@@ -25,7 +25,7 @@ export const projects = [
     liveUrl: null, //"https://project1-demo.com",
     featured: true,
     images: [
-      "/images/monthly-comms.jpg",
+      "/images/monthly-comms.avif",
     ],
   },
   {
@@ -37,7 +37,7 @@ export const projects = [
     liveUrl: null,
     featured: true,
     images: [
-      "/images/dunning-design.jpg"
+      "/images/dunning-design.avif"
     ],
   },
   {
@@ -61,7 +61,7 @@ export const projects = [
     liveUrl: null,
     featured: false,
     images: [
-      "/images/scal-comms.jpg"
+      "/images/scal-comms.avif"
     ],
   },
   {
@@ -73,7 +73,7 @@ export const projects = [
     liveUrl: null,
     featured: false,
     images: [
-      "/images/monthly-overview.jpg",
+      "/images/monthly-overview.avif",
     ],
   },
 ];
