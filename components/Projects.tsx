@@ -124,7 +124,7 @@ export default function Projects() {
           transition={{ duration: 0.6, delay: 0.1 }}
           className="text-center text-slate-600 dark:text-slate-300 mb-16 text-lg"
         >
-          A selection of recent work I've participated in.
+          A selection of recent work I&apos;ve participated in.
         </motion.p>
         
         <div className="space-y-24 mb-24">
