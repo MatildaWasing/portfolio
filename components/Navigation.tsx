@@ -50,7 +50,7 @@ export default function Navigation() {
               scrollToSection("#home");
             }}
             whileHover={{ scale: 1.05 }}
-            className="text-xl font-bold text-slate-900 dark:text-slate-100 hover:text-slate-700 dark:hover:text-slate-300 transition-colors"
+            className="hidden md:block text-xl font-bold text-slate-900 dark:text-slate-100 hover:text-slate-700 dark:hover:text-slate-300 transition-colors"
           >
             Portfolio
           </motion.a>
