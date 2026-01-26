@@ -16,6 +16,8 @@ export default function Navigation() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
     };
@@ -24,6 +26,7 @@ export default function Navigation() {
   }, []);
 
   const scrollToSection = (href: string) => {
+    if (typeof document === 'undefined') return;
     const element = document.querySelector(href);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
@@ -101,7 +104,7 @@ export default function Navigation() {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="md:hidden py-4 space-y-4"
+            className="md:hidden py-4 px-4 space-y-4 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md rounded-lg shadow-lg mt-2 border border-slate-200/50 dark:border-slate-700/50"
           >
             {navItems.map((item) => (
               <a
@@ -111,7 +114,7 @@ export default function Navigation() {
                   e.preventDefault();
                   scrollToSection(item.href);
                 }}
-                className="block text-slate-700 dark:text-slate-300 hover:text-accent dark:hover:text-accent transition-colors font-medium"
+                className="block text-slate-700 dark:text-slate-300 hover:text-accent dark:hover:text-accent transition-colors font-medium py-2"
               >
                 {item.name}
               </a>

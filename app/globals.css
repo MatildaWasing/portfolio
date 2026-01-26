@@ -15,6 +15,12 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+@media (prefers-color-scheme: dark) {
+  body {
+    background: #0f172a;
+  }
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;
@@ -23,6 +29,13 @@ body {
 
 html {
   scroll-behavior: smooth;
+  background: #ffffff;
+}
+
+@media (prefers-color-scheme: dark) {
+  html {
+    background: #0f172a;
+  }
 }
 
 ::-webkit-scrollbar {
