@@ -21,7 +21,7 @@ export default function Hero() {
             transition={{ delay: 0.2, duration: 0.8, ease: "easeOut" }}
             className="text-6xl sm:text-7xl lg:text-8xl font-bold text-slate-900 dark:text-slate-100 mb-6 tracking-tight"
           >
-            Hi, I'm{" "}
+            Hi, I&apos;m{" "}
             <span className="text-accent">
               {personalInfo.name}
             </span>

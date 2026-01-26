@@ -26,7 +26,7 @@ export default function Contact() {
           transition={{ duration: 0.6, delay: 0.1 }}
           className="text-lg sm:text-xl text-slate-600 dark:text-slate-300 mb-12 leading-relaxed"
         >
-          I'm always open to discussing new opportunities, interesting projects,
+          I&apos;m always open to discussing new opportunities, interesting projects,
           or just having a chat about technology.
         </motion.p>
         <motion.div
