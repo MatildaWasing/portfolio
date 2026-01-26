@@ -7,7 +7,7 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="py-20 px-4 sm:px-6 lg:px-8 bg-white dark:bg-gray-800"
+      className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-slate-50 to-white dark:from-slate-800 dark:to-slate-900"
     >
       <div className="max-w-4xl mx-auto text-center">
         <motion.h2
@@ -15,7 +15,7 @@ export default function Contact() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-4xl font-bold mb-6 text-gray-900 dark:text-white"
+          className="text-5xl font-bold mb-6 text-slate-900 dark:text-slate-100"
         >
           Get In Touch
         </motion.h2>
@@ -23,8 +23,8 @@ export default function Contact() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-lg text-gray-700 dark:text-gray-300 mb-12"
+          transition={{ duration: 0.6, delay: 0.1 }}
+          className="text-lg sm:text-xl text-slate-600 dark:text-slate-300 mb-12 leading-relaxed"
         >
           I'm always open to discussing new opportunities, interesting projects,
           or just having a chat about technology.
@@ -33,13 +33,15 @@ export default function Contact() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="flex flex-col sm:flex-row gap-6 justify-center items-center"
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="flex flex-col sm:flex-row gap-4 justify-center items-center"
         >
           {personalInfo.email && (
-            <a
+            <motion.a
               href={`mailto:${personalInfo.email}`}
-              className="px-8 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-colors shadow-lg hover:shadow-xl flex items-center gap-2"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="px-8 py-3.5 bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-900 rounded-lg font-medium hover:bg-slate-800 dark:hover:bg-slate-200 transition-all duration-300 shadow-sm hover:shadow-md flex items-center gap-2"
             >
               <svg
                 className="w-5 h-5"
@@ -53,13 +55,15 @@ export default function Contact() {
                 <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
               </svg>
               Send Email
-            </a>
+            </motion.a>
           )}
-          <a
+          <motion.a
             href={personalInfo.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="px-8 py-3 border-2 border-gray-900 dark:border-gray-100 text-gray-900 dark:text-gray-100 rounded-lg font-semibold hover:bg-gray-900 hover:text-white dark:hover:bg-gray-100 dark:hover:text-gray-900 transition-colors flex items-center gap-2"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="px-8 py-3.5 border-2 border-accent text-accent rounded-lg font-medium hover:bg-accent hover:text-white transition-all duration-300 flex items-center gap-2"
           >
             <svg
               className="w-5 h-5"
@@ -73,12 +77,14 @@ export default function Contact() {
               />
             </svg>
             GitHub
-          </a>
-          <a
+          </motion.a>
+          <motion.a
             href={personalInfo.linkedin}
             target="_blank"
             rel="noopener noreferrer"
-            className="px-8 py-3 border-2 border-blue-600 dark:border-blue-400 text-blue-600 dark:text-blue-400 rounded-lg font-semibold hover:bg-blue-600 hover:text-white dark:hover:bg-blue-400 dark:hover:text-gray-900 transition-colors flex items-center gap-2"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="px-8 py-3.5 border-2 border-accent text-accent rounded-lg font-medium hover:bg-accent hover:text-white transition-all duration-300 flex items-center gap-2"
           >
             <svg
               className="w-5 h-5"
@@ -88,7 +94,7 @@ export default function Contact() {
               <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
             </svg>
             LinkedIn
-          </a>
+          </motion.a>
         </motion.div>
       </div>
     </section>
