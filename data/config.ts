@@ -18,8 +18,8 @@ export const skills = {
 export const projects = [
   {
     id: 1,
-    name: "Email Components Library",
-    description: "Implementing and evolving email components used for all transactional communicationscomponent at Klarna. Currently part of rolling out the new component library. Built using atomic design methodology with atoms, molecules, and organisms to create a comprehensive design system.",
+    name: "Reusable Email Architecture library",
+    description: "Implementing and evolving email components used for all transactional communications at Klarna. Built using atomic design methodology with atoms, molecules, and organisms to create a comprehensive design system.",
     technologies: ["React", "TypeScript", "JavaScript", "Github"],
     githubUrl: null, //"://github.com/yourusername/project1",
     liveUrl: null, //"https://project1-demo.com",
@@ -33,12 +33,13 @@ export const projects = [
   {
     id: 2,
     name: "Dunning Library",
-    description: "A Figma design library for aligning the visual identity of the dunning processes for Klarna payment methods. Creating intuitive and user-friendly building blocks that enable anyone to visualize dunning processes without technical expertise.",
+    description: "A Figma component library for aligning the visual identity of processes for Klarna's payment methods. Creating intuitive and user-friendly building blocks that enable anyone to visualize dunning processes without technical expertise.",
     technologies: ["Figma"],
     githubUrl: null,
     liveUrl: null,
-    featured: false,
+    featured: true,
     images: [
+      "/images/dunning-library.avif",
       "/images/dunning-design.avif",
       "/images/dunning-test.mp4",
     ],
@@ -50,7 +51,7 @@ export const projects = [
     technologies: ["JavaScript", "TypeScript", "Github", "React", "Figma"],
     githubUrl: null,
     liveUrl: "https://www.klarna.com/us/klarna-onepay/",
-    featured: true,
+    featured: false,
     images: [
       "/images/comms-op.avif",
       "/images/comms-op-2.avif",

@@ -8,6 +8,7 @@ import { useState, useEffect } from "react";
 type Project = typeof projects[0];
 
 const isVideo = (src: string) => /\.(mp4|webm|mov)(\?|$)/i.test(src);
+const imagesOnly = (media: string[] | undefined) => (media ?? []).filter((src) => !isVideo(src));
 
 function MediaItem({
   src,
@@ -206,9 +207,13 @@ export default function Projects() {
               className="group cursor-pointer rounded-2xl p-6 lg:p-8 hover:bg-white dark:hover:bg-slate-800 hover:shadow-xl transition-all duration-300"
               onClick={() => setSelectedProject(project)}
             >
-              <div className={`flex flex-col ${project.images && project.images.length > 0 ? (index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse') : ''} gap-8 lg:gap-12 items-center`}>
-                {project.images && project.images.length > 0 && (
-                  <div className={`w-full ${project.images && project.images.length > 0 ? 'lg:w-[60%]' : ''} ${index % 2 === 0 ? 'lg:pr-6' : 'lg:pl-6'}`}>
+              {(() => {
+                const cardImages = imagesOnly(project.images);
+                return (
+                  <>
+              <div className={`flex flex-col ${cardImages.length > 0 ? (index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse') : ''} gap-8 lg:gap-12 items-center`}>
+                {cardImages.length > 0 && (
+                  <div className={`w-full ${cardImages.length > 0 ? 'lg:w-[60%]' : ''} ${index % 2 === 0 ? 'lg:pr-6' : 'lg:pl-6'}`}>
                     <div className="space-y-4">
                       <motion.div
                         whileHover={{ scale: 1.02 }}
@@ -216,20 +221,24 @@ export default function Projects() {
                         className="relative rounded-xl overflow-hidden shadow-lg bg-white dark:bg-slate-800"
                       >
                         <div className="relative aspect-[4/3] w-full overflow-hidden bg-slate-50 dark:bg-slate-700">
-                          <MediaItem
-                            src={project.images[0]}
+                          <Image
+                            src={cardImages[0]}
                             alt={`${project.name} - Screenshot 1`}
                             fill
                             className="object-contain"
                             sizes="(max-width: 768px) 100vw, 60vw"
                             priority={index === 0}
+                            onError={(e) => {
+                              const target = e.target as HTMLImageElement;
+                              target.style.display = 'none';
+                            }}
                           />
                         </div>
                       </motion.div>
                       
-                      {project.images.length > 1 && (
+                      {cardImages.length > 1 && (
                         <div className="hidden md:grid grid-cols-2 gap-3">
-                          {project.images.slice(1, 3).map((img, imgIndex) => (
+                          {cardImages.slice(1, 3).map((img, imgIndex) => (
                             <motion.div
                               key={imgIndex}
                               whileHover={{ scale: 1.05 }}
@@ -258,7 +267,7 @@ export default function Projects() {
                   </div>
                 )}
 
-                <div className={`${project.images && project.images.length > 0 ? 'w-full lg:w-[40%]' : 'w-full max-w-3xl'} space-y-6`}>
+                <div className={`${cardImages.length > 0 ? 'w-full lg:w-[40%]' : 'w-full max-w-3xl'} space-y-6`}>
                   <div>
                     <div className="flex items-center justify-between mb-3">
                       <h3 className="text-3xl font-bold text-slate-900 dark:text-slate-100 group-hover:text-slate-700 dark:group-hover:text-slate-300 transition-colors">
@@ -320,6 +329,9 @@ export default function Projects() {
                   </div>
                 </div>
               </div>
+                  </>
+                );
+              })()}
             </motion.div>
           ))}
         </div>
@@ -346,17 +358,24 @@ export default function Projects() {
                   className="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-sm hover:shadow-xl transition-all duration-300 group cursor-pointer border border-transparent hover:border-slate-200 dark:hover:border-slate-700"
                   onClick={() => setSelectedProject(project)}
                 >
-                  {project.images && project.images.length > 0 && (
-                    <div className="relative aspect-[4/3] w-full rounded-lg overflow-hidden mb-4 bg-slate-50 dark:bg-slate-700">
-                      <MediaItem
-                        src={project.images[0]}
-                        alt={project.name}
-                        fill
-                        className="object-contain group-hover:scale-105 transition-transform duration-300"
-                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                      />
-                    </div>
-                  )}
+                  {(() => {
+                    const cardImages = imagesOnly(project.images);
+                    return cardImages.length > 0 ? (
+                      <div className="relative aspect-[4/3] w-full rounded-lg overflow-hidden mb-4 bg-slate-50 dark:bg-slate-700">
+                        <Image
+                          src={cardImages[0]}
+                          alt={project.name}
+                          fill
+                          className="object-contain group-hover:scale-105 transition-transform duration-300"
+                          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                          onError={(e) => {
+                            const target = e.target as HTMLImageElement;
+                            target.style.display = "none";
+                          }}
+                        />
+                      </div>
+                    ) : null;
+                  })()}
                   <div className="flex items-center justify-between mb-2">
                     <h4 className="text-xl font-semibold text-slate-900 dark:text-slate-100 group-hover:text-slate-700 dark:group-hover:text-slate-300 transition-colors">
                       {project.name}
