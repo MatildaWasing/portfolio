@@ -10,9 +10,12 @@
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* Safe area for notched iPhones when viewport-fit=cover */
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -30,6 +33,8 @@ body {
 html {
   scroll-behavior: smooth;
   background: #ffffff;
+  /* Use dynamic viewport height on mobile (iOS) so 100vh accounts for browser chrome */
+  min-height: 100dvh;
 }
 
 @media (prefers-color-scheme: dark) {
