@@ -7,6 +7,58 @@ import { useState, useEffect } from "react";
 
 type Project = typeof projects[0];
 
+const isVideo = (src: string) => /\.(mp4|webm|mov)(\?|$)/i.test(src);
+
+function MediaItem({
+  src,
+  alt,
+  fill,
+  className,
+  sizes,
+  priority,
+  onClick,
+}: {
+  src: string;
+  alt: string;
+  fill?: boolean;
+  className?: string;
+  sizes?: string;
+  priority?: boolean;
+  onClick?: () => void;
+}) {
+  if (isVideo(src)) {
+    return (
+      <video
+        src={src}
+        controls
+        playsInline
+        loop
+        muted={!onClick}
+        preload="metadata"
+        disablePictureInPicture
+        controlsList="nodownload"
+        className={fill ? "absolute inset-0 w-full h-full object-contain" : className}
+        onClick={onClick}
+      />
+    );
+  }
+  return (
+    <Image
+      src={src}
+      alt={alt}
+      fill={fill}
+      className={className}
+      sizes={sizes}
+      priority={priority}
+      onClick={onClick}
+      onError={(e) => {
+        const target = e.target as HTMLImageElement;
+        target.style.display = "none";
+      }}
+    />
+  );
+}
+
 export default function Projects() {
   const featuredProjects = projects.filter((p) => p.featured);
   const otherProjects = projects.filter((p) => !p.featured);
@@ -164,18 +216,13 @@ export default function Projects() {
                         className="relative rounded-xl overflow-hidden shadow-lg bg-white dark:bg-slate-800"
                       >
                         <div className="relative aspect-[4/3] w-full overflow-hidden bg-slate-50 dark:bg-slate-700">
-                          <Image
+                          <MediaItem
                             src={project.images[0]}
                             alt={`${project.name} - Screenshot 1`}
                             fill
                             className="object-contain"
                             sizes="(max-width: 768px) 100vw, 60vw"
                             priority={index === 0}
-                            quality={85}
-                            onError={(e) => {
-                              const target = e.target as HTMLImageElement;
-                              target.style.display = 'none';
-                            }}
                           />
                         </div>
                       </motion.div>
@@ -301,17 +348,12 @@ export default function Projects() {
                 >
                   {project.images && project.images.length > 0 && (
                     <div className="relative aspect-[4/3] w-full rounded-lg overflow-hidden mb-4 bg-slate-50 dark:bg-slate-700">
-                      <Image
+                      <MediaItem
                         src={project.images[0]}
                         alt={project.name}
                         fill
                         className="object-contain group-hover:scale-105 transition-transform duration-300"
                         sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                        quality={80}
-                        onError={(e) => {
-                          const target = e.target as HTMLImageElement;
-                          target.style.display = 'none';
-                        }}
                       />
                     </div>
                   )}
@@ -364,19 +406,19 @@ export default function Projects() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4"
+          className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4 pt-[max(1rem,env(safe-area-inset-top))] pb-[max(1rem,env(safe-area-inset-bottom))]"
           onClick={() => setSelectedImage(null)}
         >
           <motion.div
             initial={{ scale: 0.9 }}
             animate={{ scale: 1 }}
             exit={{ scale: 0.9 }}
-            className="relative max-w-7xl w-full max-h-[95vh]"
+            className="relative max-w-7xl w-full max-h-[95dvh]"
             onClick={(e) => e.stopPropagation()}
           >
             <button
               onClick={() => setSelectedImage(null)}
-              className="absolute -top-12 right-0 text-white text-3xl hover:text-accent transition-colors z-10 w-10 h-10 flex items-center justify-center rounded-full hover:bg-white/10"
+              className="absolute -top-12 right-0 text-white text-3xl hover:text-accent transition-colors z-10 w-10 h-10 flex items-center justify-center rounded-full hover:bg-white/10 mr-[env(safe-area-inset-right)]"
               aria-label="Close image"
             >
               ✕
@@ -409,7 +451,7 @@ export default function Projects() {
           exit={{ opacity: 0 }}
           className="fixed inset-0 z-50 bg-white dark:bg-slate-900 overflow-y-auto"
         >
-          <div className="min-h-screen py-12 px-4 sm:px-6 lg:px-8">
+          <div className="min-h-screen py-12 px-4 sm:px-6 lg:px-8 pt-[max(3rem,calc(3rem+env(safe-area-inset-top)))] pb-[env(safe-area-inset-bottom)]">
             <div className="max-w-5xl mx-auto">
               <div className="flex items-center justify-between mb-8">
                 <motion.button
@@ -492,20 +534,19 @@ export default function Projects() {
                           animate={{ opacity: 1, x: 0 }}
                           exit={{ opacity: 0, x: -20 }}
                           transition={{ duration: 0.3 }}
-                          className="relative w-full h-full cursor-pointer"
-                          onClick={() => setSelectedImage(selectedProject.images[carouselIndex])}
+                          className={`relative w-full h-full ${!isVideo(selectedProject.images[carouselIndex]) ? "cursor-pointer" : ""}`}
+                          onClick={() => {
+                            const src = selectedProject.images[carouselIndex];
+                            if (!isVideo(src)) setSelectedImage(src);
+                          }}
                         >
-                          <Image
+                          <MediaItem
                             src={selectedProject.images[carouselIndex]}
                             alt={`${selectedProject.name} - Screenshot ${carouselIndex + 1}`}
                             fill
                             className="object-contain"
                             sizes="100vw"
                             priority
-                            onError={(e) => {
-                              const target = e.target as HTMLImageElement;
-                              target.style.display = 'none';
-                            }}
                           />
                         </motion.div>
 
@@ -566,14 +607,25 @@ export default function Projects() {
                                   : 'opacity-60 hover:opacity-100'
                               }`}
                             >
-                              <Image
-                                src={img}
-                                alt={`Thumbnail ${imgIndex + 1}`}
-                                fill
-                                className="object-cover"
-                                sizes="96px"
-                                quality={75}
-                              />
+                              {isVideo(img) ? (
+                                <video
+                                  src={img}
+                                  muted
+                                  playsInline
+                                  preload="metadata"
+                                  className="absolute inset-0 w-full h-full object-cover"
+                                  aria-hidden
+                                />
+                              ) : (
+                                <Image
+                                  src={img}
+                                  alt={`Thumbnail ${imgIndex + 1}`}
+                                  fill
+                                  className="object-cover"
+                                  sizes="96px"
+                                  quality={75}
+                                />
+                              )}
                             </button>
                           ))}
                         </div>

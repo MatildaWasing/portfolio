@@ -25,6 +25,8 @@ export const projects = [
     liveUrl: null, //"https://project1-demo.com",
     featured: true,
     images: [
+      "/images/component-library.avif",
+      "/images/design-test.mp4",
       "/images/monthly-comms.avif",
     ],
   },
@@ -35,9 +37,10 @@ export const projects = [
     technologies: ["Figma"],
     githubUrl: null,
     liveUrl: null,
-    featured: true,
+    featured: false,
     images: [
-      "/images/dunning-design.avif"
+      "/images/dunning-design.avif",
+      "/images/dunning-test.mp4",
     ],
   },
   {
@@ -46,9 +49,11 @@ export const projects = [
     description: "Designing and implementing email components and visuals for the collaboration between Walmart and Klarna through their payment solution OnePay.",
     technologies: ["JavaScript", "TypeScript", "Github", "React", "Figma"],
     githubUrl: null,
-    liveUrl: null,
-    featured: false,
+    liveUrl: "https://www.klarna.com/us/klarna-onepay/",
+    featured: true,
     images: [
+      "/images/comms-op.avif",
+      "/images/comms-op-2.avif",
       "/images/onepay.avif"
     ],
   },
@@ -61,7 +66,8 @@ export const projects = [
     liveUrl: null,
     featured: false,
     images: [
-      "/images/scal-comms.avif"
+      "/images/scal-comms.avif",
+      "/images/scal-test.mp4",
     ],
   },
   {
@@ -74,6 +80,7 @@ export const projects = [
     featured: false,
     images: [
       "/images/monthly-overview.avif",
+      "/images/monthly-design.avif",
     ],
   },
 ];

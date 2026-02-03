@@ -38,7 +38,7 @@ export default function Navigation() {
     <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 pt-[env(safe-area-inset-top)] ${
         isScrolled
           ? "bg-white/90 dark:bg-slate-900/90 backdrop-blur-md shadow-sm"
           : "bg-transparent"
